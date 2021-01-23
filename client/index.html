@@ -38,8 +38,8 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        "position": "python developer",
-                      "location": "Berlin germany"})
+                        "position": document.querySelector('.position').value,
+                      "location": document.querySelector('.location').value})
                 })    
                 const data = await res.json();
        
@@ -57,7 +57,7 @@
                      <h5 class="card-title col-sm">${data[i].location}</h5>
                       <h5 class="card-title col-sm">${data[i].company} </h5>
                     </div>       
-                      <p class="card-text">${data[i].Summary}...</p>
+                      <p class="card-text">${data[i].summary}...</p>
                       
                       <div class="d-flex justify-content-between" >
                           <a target="_blank"  href="${data[i].readMore}" class="btn btn-primary">İlana Git...</a>
