@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+      />
+    </head>
+    <body>
+        <div class="container d-flex justify-content-center p-3">
+            <input class="m-1 position" type="text" placeholder="Poziyon" />
+            <input class="m-1 location" type="text" placeholder="Lokasyon" />
+            <button type="button" class="btn btn-primary m-1 submit" onclick="resetSearch();submitSearch();">ARA</button>
+          </div>
+      
+          <table class="table table-striped">
+            <tr class="bg-info"></tr>
+      
+            <div class=".container-fluid" id="myTable"></div>
+          </table>
+
+        <script>
+            
+          function resetSearch() {
+            console.log('////// Reset Search');
+            var table = document.getElementById("myTable");
+            table.innerHTML = `<div class="card"></div>`
+          }
+            
+         async function submitSearch()  {
+            console.log('////// New Search');
+               // const channelURL = document.querySelector('.channel-input').value;
+                const res = await fetch('http://localhost:5000/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "position": "python developer",
+                      "location": "Berlin germany"})
+                })    
+                const data = await res.json();
+       
+
+              // return jobResults;
+              var table = document.getElementById("myTable");
+              
+              for (var i = 0; i < data.length; i++) {
+                var row = `                     
+              
+                  <div class="card">
+                    <div class="card-body">
+                    <div class="row">  <h5 class="card-title col-sm">${data[i].job}</h5>
+                    
+                     <h5 class="card-title col-sm">${data[i].location}</h5>
+                      <h5 class="card-title col-sm">${data[i].company} </h5>
+                    </div>       
+                      <p class="card-text">${data[i].Summary}...</p>
+                      
+                      <div class="d-flex justify-content-between" >
+                          <a target="_blank"  href="${data[i].readMore}" class="btn btn-primary">İlana Git...</a>
+                      <p class="card-text">${data[i].postDate}...</p>
+                      </div>
+                    </div>
+                  </div>
+                
+                                    `;
+                table.innerHTML += row;
+              }
+              
+               
+            }
+
+           
+
+            function buildTable(jobResults) {
+                var table = document.getElementById("myTable");
+              
+                for (var i = 0; i < data.length; i++) {
+                  var row = `                     
+                
+                    <div class="card">
+                      <div class="card-body">
+                      <div class="row">  <h5 class="card-title col-sm">${data[i].job}</h5>
+                      
+                       <h5 class="card-title col-sm">${data[i].location}</h5>
+                        <h5 class="card-title col-sm">${data[i].company} </h5>
+                      </div>       
+                        <p class="card-text">${data[i].Summary}...</p>
+                        
+                        <div class="d-flex justify-content-between" >
+                            <a target="_blank"  href="${data[i].readMore}" class="btn btn-primary">İlana Git...</a>
+                        <p class="card-text">${data[i].postDate}...</p>
+                        </div>
+                      </div>
+                    </div>
+                  
+                                      `;
+                  table.innerHTML += row;
+                }
+              }
+              
+
+
+           // loadCreators();
+
+        </script>
+        <style>
+            .container {
+                display: flex;
+            }
+            .card {
+                margin: 5px;
+                padding: 20px;
+                border: 1px solid white;
+            }
+        </style>
+
+    </body>
+</html>
