@@ -1,10 +1,6 @@
-const express = require("express");
-const JobList1 = require("../models/jobList1.model");
-const importedData = require("../data.json");
-const scrapers = require("./scrapers");
 const puppeteer = require("puppeteer");
 
-const searchJob = async (req, res, next) => {
+const searchJob = async (req, res) => {
   let position = req.body.position;
   let location = req.body.location;
   position = position.trim().replace(/\s/g, "+");

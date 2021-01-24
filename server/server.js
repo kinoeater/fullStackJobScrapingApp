@@ -1,15 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose")
-const dotenv = require("dotenv");
 const routes = require("./routes/index");  // you can also write require("./routes"); because it is the index file already
-const connectDatabase = require("./connectDatabase");
-const importedData = require("./data.json");
 
 const app = express();
 const Port = 5000;
 
-//mongoose.connect('mongodb://localhost:27017/AppDB',  {
-  connectDatabase();
   
 // middleware
 app.use(function (req,res,next) {
