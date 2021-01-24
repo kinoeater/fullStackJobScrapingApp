@@ -32,8 +32,8 @@ npm run dev
 
 
 ## Issues
-Currently only first page of the indeed seach results are scraped, as I get unexpected popups on the next page.
-Fell free to develop more.
+Currently only first page of the indeed search results are scraped, as I get unexpected popups on the next page.
+Please feel free to develop more.
 
 <img src="assets/Screenshot_6.jpg"  alt="front_end" />
 
