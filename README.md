@@ -1,9 +1,9 @@
 ## FrontEnd
-- Can found under client folder.
+- Can be found under client folder.
 - Very simple UI developed with HTML, CSS and Vanilla JS 
 
 ## BackEnd
-
+- Can be found under server folder.
 - Server: Express.js
 - Web Scraping: Puppeteer 
 - Data is scraped from de.indeed.com
