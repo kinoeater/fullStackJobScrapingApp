@@ -2,32 +2,36 @@ const puppeteer = require("puppeteer");
 
 async function indeed() {
   //const browser = await puppeteer.launch({ headless: false, , slowMo: 100, devtools: true });
-  const browser = await puppeteer.launch({ headless: false}); // slow down by 250ms
+  const browser = await puppeteer.launch({
+    headless: false,
+   // slowMo: 100,
+    //devtools: true,
+    args: [
+      '--incognito', 
+    ]
+  }); // slow down by 250ms
   const page = await browser.newPage();
-  await page.goto("https://de.indeed.com/jobs?q=software+developer&l=Munchen", {
+  await page.goto("https://de.indeed.com/jobs?q=python+developer&l=Hamburg", {
     waitUntil: "networkidle2",
   });
 
   let next = 1;
+  let pageNo = 0;
 
 while (next > 0 ) {
-
+  pageNo= pageNo +1;
+console.log(pageNo+1);
   // check cookies
-  page.waitForTimeout(2000);
+ 
    await page.evaluate( function checkCookies() {   
     const q = document.querySelectorAll('#onetrust-accept-btn-handler').length;
     if(q>0) {
      document.querySelector('#onetrust-accept-btn-handler').click();
     }})
 
-    page.waitForTimeout(2000);
+
     // check pop up 
     await page.keyboard.press("Enter");
-//  await page.evaluate( function checkPopUp() {   
-//  const p = document.querySelectorAll('.popover-x-button-close').length;
-//  if(p>0) {
-//   document.querySelector('.popover-x-button-close').click();
-//  }})
 
   const jobs = await page.evaluate( () => 
   Array.from(document.querySelectorAll("div.jobsearch-SerpJobCard")).map(card => ({
@@ -41,11 +45,19 @@ while (next > 0 ) {
   )
   
   if(next>0) {
-    await page.evaluate(() => 
-  
-    document.querySelector("*[aria-label='Weiter']").click() )
-      }
 
+let newUrl = await page.evaluate( () => document.querySelector("*[aria-label='Weiter']").getAttribute('href') );
+newUrl = 'https://de.indeed.com/'+newUrl
+
+await page.goto(newUrl, {
+  waitUntil: "networkidle2",
+});
+
+
+      }
+if(pageNo>5) {
+  break;
+}
   
 }
 
