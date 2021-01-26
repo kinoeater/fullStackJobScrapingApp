@@ -1,6 +1,6 @@
 ## FrontEnd
 - Can be found under client folder.
-- Very simple UI developed with HTML, CSS and Vanilla JS 
+- Very simple UI developed with HTML, CSS (bootstrap) and Vanilla JS 
 
 ## BackEnd
 - Can be found under server folder.
