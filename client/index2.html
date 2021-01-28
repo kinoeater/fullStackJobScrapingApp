@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="index6.css" />
+    <link rel="stylesheet" href="index2.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
@@ -162,21 +162,17 @@
 
         for (var i = 0; i < data.length; i++) {
           var row = `                     
-            
-                <div class="card">
+                            <div class="card ">
+                  <div class="card-header">${data[i].location}</div>
                   <div class="card-body">
-                  <div class="row">  <h5 class="card-title col-sm">${data[i].job}</h5>
-                  
-                   <h5 class="card-title col-sm">${data[i].location}</h5>
-                    <h5 class="card-title col-sm">${data[i].company} </h5>
-                  </div>       
-                    <p class="card-text">${data[i].summary}...</p>
-                    
-                    <div class="d-flex justify-content-between" >
-                        <a target="_blank"  href="${data[i].readMore}" class="btn btn-primary">İlana Git...</a>
-                    <p class="card-text">${data[i].postDate}...</p>
-                    </div>
+                    <h5 class="card-title">${data[i].job}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${data[i].company} </h6>
+                    <p class="card-text">
+                      ${data[i].summary}...
+                    </p>
+                    <a target="_blank"  href="${data[i].readMore}"  class="btn btn-primary">İlana Git</a>
                   </div>
+                  <div class="card-footer text-muted">${data[i].postDate}...</div>
                 </div>
               
                                   `;
@@ -201,7 +197,7 @@
                       
                       <div class="d-flex justify-content-between" >
                           <a target="_blank"  href="${data[i].readMore}" class="btn btn-primary">İlana Git...</a>
-                      <p class="card-text">${data[i].postDate}...</p>
+                      <p  class="card-text">${data[i].postDate}...</p>
                       </div>
                     </div>
                   </div>
@@ -216,12 +212,12 @@
     <style>
       .card {
         margin: 5px;
-
         padding-left: 20px;
         padding-right: 20px;
         box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgb(255, 255, 255);
         transition: 0.3s;
+        
       }
     </style>
   </body>
