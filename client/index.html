@@ -1,58 +1,75 @@
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous"
-      />
-    </head>
-    <body>
-        <div class="jumbotron text-center">
-        <h1>Jobs in Germany</h1>
-        <p>Type the position and city name in Germany!</p>
+  <head>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1>Jobs in Germany</h1>
+      <p>Type the position and city name in Germany!</p>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+      <div class="container d-flex justify-content-center p-3">
+        <input class="m-1 position" type="text" placeholder="Position" />
+        <input class="m-1 location" type="text" placeholder="Location" />
+
+        <button
+          type="button"
+          class="btn btn-primary m-1 submit"
+          onclick="resetSearch();submitSearch();"
+        >
+          ARA
+        </button>
       </div>
-        <h2 class="container d-flex justify-content-center p-3">
-            <input class="m-1 position" type="text" placeholder="Position" />
-            <input class="m-1 location" type="text" placeholder="Location" />
-            <button type="button" class="btn btn-primary m-1 submit" onclick="resetSearch();submitSearch();">ARA</button>
-          </h2>
       
-          <table class="table table-striped">
-            <tr class="bg-info"></tr>
-      
-            <div class=".container-fluid" id="myTable"></div>
-          </table>
+    </div>
+    <div class="dropdown m-1">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Berlin</a></li>
+        <li><a href="#">Hamburg</a></li>
+        <li><a href="#">Munchen</a></li>
+      </ul>
+    </div>
+    <table class="table table-striped">
+      <tr class="bg-info"></tr>
 
-        <script>
-            
-          function resetSearch() {
-            console.log('////// Reset Search');
-            var table = document.getElementById("myTable");
-            table.innerHTML = `<div class="card"></div>`
-          }
-            
-         async function submitSearch()  {
-            console.log('////// New Search');
-               // const channelURL = document.querySelector('.channel-input').value;
-                const res = await fetch('http://localhost:5000/search', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "position": document.querySelector('.position').value,
-                      "location": document.querySelector('.location').value})
-                })    
-                const data = await res.json();
-       
+      <div class=".container-fluid" id="myTable"></div>
+    </table>
 
-              // return jobResults;
-              var table = document.getElementById("myTable");
-              
-              for (var i = 0; i < data.length; i++) {
-                var row = `                     
+    <script>
+      function resetSearch() {
+        var table = document.getElementById("myTable");
+        table.innerHTML = `<div class="card"></div>`;
+      }
+
+      async function submitSearch() {
+        console.log("////// New Search");
+        // const channelURL = document.querySelector('.channel-input').value;
+        const res = await fetch("http://localhost:5000/search", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            position: document.querySelector(".position").value,
+            location: document.querySelector(".location").value,
+          }),
+        });
+        const data = await res.json();
+
+        // return jobResults;
+        var table = document.getElementById("myTable");
+
+        for (var i = 0; i < data.length; i++) {
+          var row = `                     
               
                   <div class="card">
                     <div class="card-body">
@@ -71,19 +88,15 @@
                   </div>
                 
                                     `;
-                table.innerHTML += row;
-              }
-              
-               
-            }
+          table.innerHTML += row;
+        }
+      }
 
-           
+      function buildTable(jobResults) {
+        var table = document.getElementById("myTable");
 
-            function buildTable(jobResults) {
-                var table = document.getElementById("myTable");
-              
-                for (var i = 0; i < data.length; i++) {
-                  var row = `                     
+        for (var i = 0; i < data.length; i++) {
+          var row = `                     
                 
                     <div class="card">
                       <div class="card-body">
@@ -102,25 +115,21 @@
                     </div>
                   
                                       `;
-                  table.innerHTML += row;
-                }
-              }
-              
+          table.innerHTML += row;
+        }
+      }
 
-
-           // loadCreators();
-
-        </script>
-        <style>
-            .container {
-                display: flex;
-            }
-            .card {
-                margin: 5px;
-                padding: 20px;
-                border: 1px solid white;
-            }
-        </style>
-
-    </body>
+      // loadCreators();
+    </script>
+    <style>
+      .container {
+        display: flex;
+      }
+      .card {
+        margin: 5px;
+        padding: 20px;
+        border: 1px solid white;
+      }
+    </style>
+  </body>
 </html>

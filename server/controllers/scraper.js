@@ -67,7 +67,7 @@ try {
       location: card.querySelectorAll(".location").length>0 ? card.querySelector(".location").innerText.trim() : " ",
       company: card.querySelectorAll("span.company").length>0 ? card.querySelector("span.company").innerText.trim() : " ",
       postDate: card.querySelectorAll("span.date").length>0 ? card.querySelector("span.date").innerText.trim() : " ",
-      readMore: card.querySelectorAll(".jobtitle").length>0 ? card.querySelector(".jobtitle").getAttribute("href").trim() : " ",
+      readMore: card.querySelectorAll(".jobtitle").length>0 ? "https://de.indeed.com"+ card.querySelector(".jobtitle").getAttribute("href").trim() : " ",
       summary: card.querySelectorAll("div.summary").length>0 ? card.querySelector("div.summary").innerText.trim() : " ",
 
     }))
