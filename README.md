@@ -26,7 +26,7 @@ Clone the repo and install the dependencies.
 cd server
 npm run dev
 ```
-2) Open [http://localhost:5000](http://localhost:3000) and seach for the job
+2) Open [index.html from client folder](http://localhost:3000) and seach for the job
 3) Enter the job name and city in Germany and see the results
 
 
